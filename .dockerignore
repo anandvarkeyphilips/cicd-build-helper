@@ -1,0 +1,8 @@
+#https://codefresh.io/docker-tutorial/not-ignore-dockerignore-2/
+
+# ignore .git and .cache folders
+.git
+.cache
+
+#notes document
+docker-notes.txt

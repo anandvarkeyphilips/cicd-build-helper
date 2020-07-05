@@ -1,0 +1,39 @@
+Docker Commands
+
+We can see the image we just built using the command docker images.
+$ docker images
+
+With Dockerfile written, you can build the image using the following command:
+$ docker build .
+
+Let’s proceed to tag the Docker image we just built.
+$ docker build -t yourusername/example-node-app
+
+We supplied -p argument to specify what port on the host machine to map the port the app is listening on in the container
+$ docker run -p80:3000 yourusername/example-node-app
+
+To run the container in a detached mode, you can supply argument -d:
+$ docker run -d -p80:3000 yourusername/example-node-app
+
+Retag the image with a version number:
+docker tag yourusername/example-node-app yourdockerhubusername/example-node-app:v1
+
+Then push with the following:
+$ docker push abiodunjames/example-node-app:v1
+
+You can list Docker containers:
+$ docker ps
+
+And you can inspect a container:
+$ docker inspect <container-id>
+
+You can view Docker logs in a Docker container:
+$ docker logs <container-id>
+
+And you can stop a running container:
+$ docker stop <container-id>
+
+
+docker build -t anandvarkeyphilips/cicd-build-helper:1.0.0 -t anandvarkeyphilips/cicd-build-helper:latest .
+docker push anandvarkeyphilips/cicd-build-helper:1.0.0
+docker run -p8080:8080 anandvarkeyphilips/cicd-build-helper:latest

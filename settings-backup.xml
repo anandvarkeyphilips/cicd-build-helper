@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+   
+  <localRepository>${user.home}/.m2/repository</localRepository>
+  <interactiveMode>true</interactiveMode>
+  <usePluginRegistry>false</usePluginRegistry>
+  <offline>false</offline>
+ 
+  <pluginGroups>
+       <pluginGroup>org.mortbay.jetty</pluginGroup>
+       <pluginGroup>your.own.plugin.groupId</pluginGroup>      
+  </pluginGroups>
+ 
+  <servers>
+    <server>
+      <id>server_repo_java_code_gueeks</id>
+      <username>john</username>
+      <password>doeIsMyPass</password>
+      <privateKey>${user.home}/.ssh/dsa_key</privateKey>
+      <passphrase>my_passphrase</passphrase>
+      <filePermissions>774</filePermissions>
+      <directoryPermissions>775</directoryPermissions>
+      <configuration></configuration>
+    </server>
+    <server>
+      <id>server_repo_java_code_gueeks_2</id>
+      <username>steve</username>
+      <password>steve_password</password>
+      <privateKey>${user.home}/.ssh/id_dsa</privateKey>
+      <passphrase>steve_passphrase</passphrase>
+      <filePermissions>664</filePermissions>
+      <directoryPermissions>775</directoryPermissions>
+      <configuration></configuration>
+    </server>
+  </servers>
+ 
+  <mirrors>
+    <mirror>
+      <id>centralmirror</id>
+      <name>Apache maven central mirror Spain</name>
+      <url>http://downloads.centralmirror.com/public/maven</url>
+      <mirrorOf>maven_central</mirrorOf>
+    </mirror>
+    <mirror>
+      <id>jcg_mirror</id>
+      <name>Java Code Gueeks Mirror Spain</name>
+      <url>http://downloads.jcgmirror.com/public/jcg</url>
+      <mirrorOf>javacodegueeks_repo</mirrorOf>
+    </mirror>
+  </mirrors>
+ 
+  <proxies>
+    <proxy>
+      <id>jcg_proxy</id>
+      <active>true</active>
+      <protocol>http</protocol>
+      <host>proxy.javacodegueeks.com</host>
+      <port>9000</port>
+      <username>proxy_user</username>
+      <password>user_password</password>
+      <nonProxyHosts>*.google.com|javacodegueeks.com</nonProxyHosts>
+    </proxy>
+  </proxies>
+ 
+  <profiles>
+    <profile>
+      <id>test</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+        <jdk>1.6</jdk>
+        <os>
+          <name>Windows XP</name>
+          <family>Windows</family>
+          <arch>x86</arch>
+          <version>5.1.3200</version>
+        </os>
+        <property>
+          <name>mavenVersion</name>
+          <value>3.0.3</value>
+        </property>
+        <file>
+          <exists>${basedir}/windows.properties</exists>
+          <missing>${basedir}/windows_endpoints.properties</missing>
+        </file>
+      </activation>
+       
+      <properties>
+        <user.project>${user.home}/your-project</user.project>
+        <system.jks>${user.home}/your_jks_store</system.jks>
+      </properties>
+       
+      <repositories>
+        <repository>
+          <id>codehausSnapshots</id>
+          <name>Codehaus Snapshots</name>
+          <releases>
+            <enabled>false</enabled>
+            <updatePolicy>always</updatePolicy>
+            <checksumPolicy>warn</checksumPolicy>
+          </releases>
+          <snapshots>
+            <enabled>true</enabled>
+            <updatePolicy>never</updatePolicy>
+            <checksumPolicy>fail</checksumPolicy>
+          </snapshots>
+          <url>http://snapshots.maven.codehaus.org/maven2</url>
+          <layout>default</layout>
+        </repository>
+      </repositories>
+       
+      <pluginRepositories>
+         <pluginGroup>your.own.plugin.groupId</pluginGroup>
+      </pluginRepositories>
+       
+    </profile>
+  </profiles>
+ 
+  <activeProfiles>
+    <activeProfile>test</activeProfile>
+  </activeProfiles>
+ 
+</settings>
